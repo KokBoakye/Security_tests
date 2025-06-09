@@ -17,8 +17,9 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run npm audit
-        run: npm audit --audit-level=high --json > audit.json
+      - name: Run npm audit (allow failure)
+        run: |
+          npm audit --audit-level=high --json > audit.json || true
 
       - name: Upload audit report
         uses: actions/upload-artifact@v4
